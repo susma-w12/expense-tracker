@@ -1,69 +1,222 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="min-h-screen bg-white text-gray-900">
+
+      {/* Navbar */}
+      <nav className="border-b">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <Link href="/" className="text-xl font-bold">
+            Expense Tracker
+          </Link>
+
+          <div className="flex items-center gap-6 text-sm">
+            <Link href="/" className="hover:text-blue-600">
+              Home
+            </Link>
+
+            <Link href="/login" className="hover:text-blue-600">
+              Login
+            </Link>
+
+            <Link
+              href="/signup"
+              className="rounded-lg bg-black px-4 py-2 text-white hover:bg-gray-800"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              Get Started
+            </Link>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero */}
+      <section className="mx-auto max-w-6xl px-6 py-24 text-center">
+        <p className="mb-4 text-sm font-medium text-blue-600">
+          SIMPLE. SMART. ORGANIZED.
+        </p>
+
+        <h1 className="mx-auto max-w-3xl text-5xl font-bold tracking-tight">
+          Take control of your everyday expenses
+        </h1>
+
+        <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-500">
+          Track your spending, understand where your money goes,
+          and make better financial decisions with a simple expense
+          management system.
+        </p>
+
+        <div className="mt-8 flex justify-center gap-4">
+          <Link
+            href="/signup"
+            className="rounded-lg bg-black px-6 py-3 font-medium text-white hover:bg-gray-800"
+          >
+            Get Started
+          </Link>
+
+          <Link
+            href="/login"
+            className="rounded-lg border px-6 py-3 font-medium hover:bg-gray-50"
+          >
+            Login
+          </Link>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="border-y bg-gray-50">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-bold">
+              Everything you need to manage expenses
+            </h2>
+
+            <p className="mt-3 text-gray-500">
+              Keep your daily spending organized in one place.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+
+            <div className="rounded-xl border bg-white p-6">
+              <h3 className="text-lg font-semibold">
+                Track Expenses
+              </h3>
+
+              <p className="mt-2 text-sm leading-6 text-gray-500">
+                Record your daily expenses with details such as
+                amount, category, date, and description.
+              </p>
+            </div>
+
+            <div className="rounded-xl border bg-white p-6">
+              <h3 className="text-lg font-semibold">
+                Understand Spending
+              </h3>
+
+              <p className="mt-2 text-sm leading-6 text-gray-500">
+                See your spending patterns and understand where
+                most of your money is going.
+              </p>
+            </div>
+
+            <div className="rounded-xl border bg-white p-6">
+              <h3 className="text-lg font-semibold">
+                Stay Organized
+              </h3>
+
+              <p className="mt-2 text-sm leading-6 text-gray-500">
+                Manage, update, and review your expenses from
+                one organized dashboard.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="mx-auto max-w-6xl px-6 py-20">
+
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl font-bold">
+            How it works
+          </h2>
+
+          <p className="mt-3 text-gray-500">
+            Start managing your expenses in three simple steps.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="grid gap-8 md:grid-cols-3">
+
+          <div className="text-center">
+            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-black text-sm font-bold text-white">
+              1
+            </div>
+
+            <h3 className="mt-4 font-semibold">
+              Create an account
+            </h3>
+
+            <p className="mt-2 text-sm text-gray-500">
+              Sign up and create your personal expense account.
+            </p>
+          </div>
+
+          <div className="text-center">
+            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-black text-sm font-bold text-white">
+              2
+            </div>
+
+            <h3 className="mt-4 font-semibold">
+              Add your expenses
+            </h3>
+
+            <p className="mt-2 text-sm text-gray-500">
+              Record your daily spending and organize it by category.
+            </p>
+          </div>
+
+          <div className="text-center">
+            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-black text-sm font-bold text-white">
+              3
+            </div>
+
+            <h3 className="mt-4 font-semibold">
+              Understand your spending
+            </h3>
+
+            <p className="mt-2 text-sm text-gray-500">
+              Use your dashboard to review and understand your expenses.
+            </p>
+          </div>
+
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-gray-900 px-6 py-20 text-center text-white">
+        <h2 className="text-3xl font-bold">
+          Ready to take control of your expenses?
+        </h2>
+
+        <p className="mx-auto mt-4 max-w-xl text-gray-300">
+          Create your account and start tracking your spending today.
+        </p>
+
+        <Link
+          href="/signup"
+          className="mt-8 inline-block rounded-lg bg-white px-6 py-3 font-medium text-black hover:bg-gray-100"
+        >
+          Create Account
+        </Link>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-6 text-sm text-gray-500 md:flex-row">
+          <p>
+            © 2026 Expense Tracker. All rights reserved.
+          </p>
+
+          <div className="flex gap-5">
+            <Link href="/" className="hover:text-black">
+              Home
+            </Link>
+
+            <Link href="/login" className="hover:text-black">
+              Login
+            </Link>
+
+            <Link href="/signup" className="hover:text-black">
+              Sign Up
+            </Link>
+          </div>
+        </div>
+      </footer>
+
+    </main>
   );
 }
