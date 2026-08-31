@@ -1,8 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import {
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
+  BarChart,
+  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -13,9 +16,10 @@ import {
   Cell,
   Legend,
 } from "recharts";
+import { TrendingUp, PieChart as PieIcon } from "lucide-react";
 
-type DailyData = {
-  date: string;
+type ChartItem = {
+  label: string;
   amount: number;
 };
 
@@ -25,80 +29,144 @@ type CategoryData = {
 };
 
 type Props = {
-  dailyData: DailyData[];
+  dailyData: ChartItem[];
+  monthlyData: ChartItem[];
   categoryData: CategoryData[];
 };
 
-const COLORS = [
-  "#6366f1",
-  "#f97316",
-  "#22c55e",
-  "#ec4899",
-  "#eab308",
-  "#06b6d4",
+const CATEGORY_COLORS = [
+  "#6366f1", // Indigo
+  "#10b981", // Emerald
+  "#f59e0b", // Amber
+  "#ec4899", // Pink
+  "#8b5cf6", // Purple
+  "#06b6d4", // Cyan
+  "#f97316", // Orange
+  "#64748b", // Slate
 ];
 
 export default function DashboardCharts({
   dailyData,
+  monthlyData,
   categoryData,
 }: Props) {
+  const [timeframe, setTimeframe] = useState<"daily" | "monthly">("daily");
+
+  const activeTrendData = timeframe === "daily" ? dailyData : monthlyData;
+  const totalCategorySpending = categoryData.reduce(
+    (acc, cur) => acc + cur.value,
+    0
+  );
+
   return (
     <div className="grid gap-6 lg:grid-cols-5">
-      {/* Daily Spending */}
-      <div className="rounded-2xl border bg-white p-6 shadow-sm lg:col-span-3">
-        <div className="mb-6">
-          <h2 className="text-lg font-semibold">Daily Spending</h2>
-          <p className="text-sm text-gray-500">
-            Your spending over the last 7 days
-          </p>
+      {/* Spending Trend (Daily / Monthly) */}
+      <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm lg:col-span-3 flex flex-col justify-between">
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <TrendingUp className="h-5 w-5 text-indigo-600" />
+              <h2 className="text-base font-bold text-slate-900">
+                Spending Trends
+              </h2>
+            </div>
+            <p className="text-xs text-slate-500 mt-0.5">
+              {timeframe === "daily"
+                ? "Daily spending over the last 7 days"
+                : "Monthly spending over the last 6 months"}
+            </p>
+          </div>
+
+          {/* Timeframe Toggle Buttons */}
+          <div className="inline-flex rounded-xl bg-slate-100 p-1 text-xs font-semibold text-slate-600 self-start sm:self-auto">
+            <button
+              type="button"
+              onClick={() => setTimeframe("daily")}
+              className={`rounded-lg px-3 py-1.5 transition-all ${
+                timeframe === "daily"
+                  ? "bg-white text-indigo-600 shadow-sm"
+                  : "hover:text-slate-900"
+              }`}
+            >
+              Daily (7D)
+            </button>
+            <button
+              type="button"
+              onClick={() => setTimeframe("monthly")}
+              className={`rounded-lg px-3 py-1.5 transition-all ${
+                timeframe === "monthly"
+                  ? "bg-white text-indigo-600 shadow-sm"
+                  : "hover:text-slate-900"
+              }`}
+            >
+              Monthly (6M)
+            </button>
+          </div>
         </div>
 
-        <div className="h-72">
+        {/* Chart View */}
+        <div className="h-64 sm:h-72 w-full">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={dailyData}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} />
-
-              <XAxis
-                dataKey="date"
-                tick={{ fontSize: 12 }}
-              />
-
-              <YAxis
-                tick={{ fontSize: 12 }}
-              />
-
-              <Tooltip
-                formatter={(value) => [`Rs. ${value}`, "Spending"]}
-              />
-
-              <Line
-                type="monotone"
-                dataKey="amount"
-                stroke="#6366f1"
-                strokeWidth={3}
-                dot={{ r: 4 }}
-                activeDot={{ r: 6 }}
-              />
-            </LineChart>
+            {timeframe === "daily" ? (
+              <AreaChart data={activeTrendData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="indigoGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#6366f1" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                <XAxis dataKey="label" tick={{ fontSize: 11, fill: "#64748b" }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: "#64748b" }} axisLine={false} tickLine={false} />
+                <Tooltip
+                  contentStyle={{ backgroundColor: "#0f172a", borderRadius: "12px", border: "none", color: "#fff", fontSize: "12px" }}
+                  formatter={(value: unknown) => [`Rs. ${Number(value || 0).toFixed(2)}`, "Amount"]}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="amount"
+                  stroke="#6366f1"
+                  strokeWidth={2.5}
+                  fillOpacity={1}
+                  fill="url(#indigoGradient)"
+                />
+              </AreaChart>
+            ) : (
+              <BarChart data={activeTrendData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                <XAxis dataKey="label" tick={{ fontSize: 11, fill: "#64748b" }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: "#64748b" }} axisLine={false} tickLine={false} />
+                <Tooltip
+                  contentStyle={{ backgroundColor: "#0f172a", borderRadius: "12px", border: "none", color: "#fff", fontSize: "12px" }}
+                  formatter={(value: unknown) => [`Rs. ${Number(value || 0).toFixed(2)}`, "Amount"]}
+                />
+                <Bar dataKey="amount" fill="#6366f1" radius={[6, 6, 0, 0]} />
+              </BarChart>
+            )}
           </ResponsiveContainer>
         </div>
       </div>
 
-      {/* Category Overview */}
-      <div className="rounded-2xl border bg-white p-6 shadow-sm lg:col-span-2">
-        <div className="mb-4">
-          <h2 className="text-lg font-semibold">Spending Overview</h2>
-          <p className="text-sm text-gray-500">
-            Expenses by category
+      {/* Category Overview Donut Chart */}
+      <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm lg:col-span-2 flex flex-col justify-between">
+        <div>
+          <div className="flex items-center gap-2">
+            <PieIcon className="h-5 w-5 text-indigo-600" />
+            <h2 className="text-base font-bold text-slate-900">
+              Category Breakdown
+            </h2>
+          </div>
+          <p className="text-xs text-slate-500 mt-0.5">
+            Overall distribution of your expenses
           </p>
         </div>
 
         {categoryData.length === 0 ? (
-          <div className="flex h-72 items-center justify-center text-sm text-gray-500">
-            No spending data yet
+          <div className="flex h-64 items-center justify-center text-xs font-medium text-slate-400">
+            No spending data recorded
           </div>
         ) : (
-          <div className="h-72">
+          <div className="relative h-64 w-full my-auto">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -106,26 +174,32 @@ export default function DashboardCharts({
                   dataKey="value"
                   nameKey="name"
                   cx="50%"
-                  cy="45%"
+                  cy="50%"
                   innerRadius={65}
-                  outerRadius={95}
-                  paddingAngle={3}
+                  outerRadius={90}
+                  paddingAngle={4}
                 >
                   {categoryData.map((_, index) => (
                     <Cell
                       key={`cell-${index}`}
-                      fill={COLORS[index % COLORS.length]}
+                      fill={CATEGORY_COLORS[index % CATEGORY_COLORS.length]}
                     />
                   ))}
                 </Pie>
-
                 <Tooltip
-                  formatter={(value) => [`Rs. ${value}`, "Amount"]}
+                  contentStyle={{ backgroundColor: "#0f172a", borderRadius: "12px", border: "none", color: "#fff", fontSize: "12px" }}
+                  formatter={(value: unknown) => [
+                    `Rs. ${Number(value || 0).toFixed(2)} (${(((Number(value) || 0) / (totalCategorySpending || 1)) * 100).toFixed(1)}%)`,
+                    "Amount",
+                  ]}
                 />
-
                 <Legend
                   verticalAlign="bottom"
                   height={36}
+                  iconType="circle"
+                  formatter={(value) => (
+                    <span className="text-xs font-medium text-slate-600">{value}</span>
+                  )}
                 />
               </PieChart>
             </ResponsiveContainer>
@@ -134,4 +208,4 @@ export default function DashboardCharts({
       </div>
     </div>
   );
-}
+}

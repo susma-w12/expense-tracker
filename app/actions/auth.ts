@@ -32,3 +32,8 @@ export async function registerUser(formData: FormData) {
         },
     });
 }
+
+export async function logoutUser() {
+    const { signOut } = await import("@/auth");
+    await signOut({ redirectTo: "/login" });
+}

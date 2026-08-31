@@ -1,222 +1,91 @@
 import Link from "next/link";
+import { auth } from "@/auth";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const session = await auth();
+
   return (
-    <main className="min-h-screen bg-white text-gray-900">
-
-      {/* Navbar */}
-      <nav className="border-b">
+    <main className="min-h-screen bg-slate-50 text-slate-900 flex flex-col justify-between">
+      {/* Top Navbar */}
+      <nav className="border-b border-slate-200 bg-white sticky top-0 z-50">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link href="/" className="text-xl font-bold">
-            Expense Tracker
+          <Link href="/" className="flex items-center gap-2 font-bold text-lg text-slate-900">
+            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-indigo-600 text-white font-bold text-sm">
+              E
+            </div>
+            <span>Expense<span className="text-indigo-600">Tracker</span></span>
           </Link>
 
-          <div className="flex items-center gap-6 text-sm">
-            <Link href="/" className="hover:text-blue-600">
-              Home
-            </Link>
+          <div className="flex items-center gap-3">
+            {session ? (
+              <Link
+                href="/dashboard"
+                className="rounded-xl bg-indigo-600 px-4 py-2 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 transition-all"
+              >
+                Go to Dashboard
+              </Link>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="rounded-xl border border-slate-200 px-4 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-all"
+                >
+                  Log In
+                </Link>
 
-            <Link href="/login" className="hover:text-blue-600">
-              Login
-            </Link>
-
-            <Link
-              href="/signup"
-              className="rounded-lg bg-black px-4 py-2 text-white hover:bg-gray-800"
-            >
-              Get Started
-            </Link>
+                <Link
+                  href="/signup"
+                  className="rounded-xl bg-indigo-600 px-4 py-2 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 transition-all"
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="mx-auto max-w-6xl px-6 py-24 text-center">
-        <p className="mb-4 text-sm font-medium text-blue-600">
-          SIMPLE. SMART. ORGANIZED.
-        </p>
+      {/* Main Content */}
+      <section className="mx-auto my-auto max-w-4xl px-6 py-16 text-center">
+        
 
-        <h1 className="mx-auto max-w-3xl text-5xl font-bold tracking-tight">
-          Take control of your everyday expenses
+        <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-700 leading-tight">
+          Track your spending. Stay in control.
         </h1>
 
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-500">
-          Track your spending, understand where your money goes,
-          and make better financial decisions with a simple expense
-          management system.
+        <p className="mx-auto mt-4 max-w-xl text-sm sm:text-base text-slate-500 leading-relaxed">
+          See your expenses clearly, manage spending, and make smarter decisions
         </p>
 
-        <div className="mt-8 flex justify-center gap-4">
-          <Link
-            href="/signup"
-            className="rounded-lg bg-black px-6 py-3 font-medium text-white hover:bg-gray-800"
-          >
-            Get Started
-          </Link>
-
-          <Link
-            href="/login"
-            className="rounded-lg border px-6 py-3 font-medium hover:bg-gray-50"
-          >
-            Login
-          </Link>
+        <div className="mt-8 flex items-center justify-center gap-3">
+          {session ? (
+            <Link
+              href="/dashboard"
+              className="rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 transition-all"
+            >
+              Open Dashboard
+            </Link>
+          ) : (
+            <>
+              <Link
+                href="/signup"
+                className="rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 transition-all"
+              >
+                Get Started
+              </Link>
+              
+            </>
+          )}
         </div>
-      </section>
-
-      {/* Features */}
-      <section className="border-y bg-gray-50">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold">
-              Everything you need to manage expenses
-            </h2>
-
-            <p className="mt-3 text-gray-500">
-              Keep your daily spending organized in one place.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-3">
-
-            <div className="rounded-xl border bg-white p-6">
-              <h3 className="text-lg font-semibold">
-                Track Expenses
-              </h3>
-
-              <p className="mt-2 text-sm leading-6 text-gray-500">
-                Record your daily expenses with details such as
-                amount, category, date, and description.
-              </p>
-            </div>
-
-            <div className="rounded-xl border bg-white p-6">
-              <h3 className="text-lg font-semibold">
-                Understand Spending
-              </h3>
-
-              <p className="mt-2 text-sm leading-6 text-gray-500">
-                See your spending patterns and understand where
-                most of your money is going.
-              </p>
-            </div>
-
-            <div className="rounded-xl border bg-white p-6">
-              <h3 className="text-lg font-semibold">
-                Stay Organized
-              </h3>
-
-              <p className="mt-2 text-sm leading-6 text-gray-500">
-                Manage, update, and review your expenses from
-                one organized dashboard.
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold">
-            How it works
-          </h2>
-
-          <p className="mt-3 text-gray-500">
-            Start managing your expenses in three simple steps.
-          </p>
-        </div>
-
-        <div className="grid gap-8 md:grid-cols-3">
-
-          <div className="text-center">
-            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-black text-sm font-bold text-white">
-              1
-            </div>
-
-            <h3 className="mt-4 font-semibold">
-              Create an account
-            </h3>
-
-            <p className="mt-2 text-sm text-gray-500">
-              Sign up and create your personal expense account.
-            </p>
-          </div>
-
-          <div className="text-center">
-            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-black text-sm font-bold text-white">
-              2
-            </div>
-
-            <h3 className="mt-4 font-semibold">
-              Add your expenses
-            </h3>
-
-            <p className="mt-2 text-sm text-gray-500">
-              Record your daily spending and organize it by category.
-            </p>
-          </div>
-
-          <div className="text-center">
-            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-black text-sm font-bold text-white">
-              3
-            </div>
-
-            <h3 className="mt-4 font-semibold">
-              Understand your spending
-            </h3>
-
-            <p className="mt-2 text-sm text-gray-500">
-              Use your dashboard to review and understand your expenses.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-gray-900 px-6 py-20 text-center text-white">
-        <h2 className="text-3xl font-bold">
-          Ready to take control of your expenses?
-        </h2>
-
-        <p className="mx-auto mt-4 max-w-xl text-gray-300">
-          Create your account and start tracking your spending today.
-        </p>
-
-        <Link
-          href="/signup"
-          className="mt-8 inline-block rounded-lg bg-white px-6 py-3 font-medium text-black hover:bg-gray-100"
-        >
-          Create Account
-        </Link>
       </section>
 
       {/* Footer */}
-      <footer className="border-t">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-6 text-sm text-gray-500 md:flex-row">
-          <p>
-            © 2026 Expense Tracker. All rights reserved.
-          </p>
-
-          <div className="flex gap-5">
-            <Link href="/" className="hover:text-black">
-              Home
-            </Link>
-
-            <Link href="/login" className="hover:text-black">
-              Login
-            </Link>
-
-            <Link href="/signup" className="hover:text-black">
-              Sign Up
-            </Link>
-          </div>
+      <footer className="border-t border-slate-200 bg-white py-4">
+        <div className="mx-auto flex max-w-6xl flex-col sm:flex-row items-center justify-between gap-3 px-6 text-xs text-slate-500">
+          <p>© {new Date().getFullYear()} Expense Tracker. All rights reserved.</p>
+          
         </div>
       </footer>
-
     </main>
   );
 }
