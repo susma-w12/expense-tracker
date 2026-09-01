@@ -9,7 +9,6 @@ export default function AddExpenseModal() {
 
     return (
         <>
-            {/* Open button */}
             <button
                 type="button"
                 onClick={() => setIsOpen(true)}
@@ -18,11 +17,9 @@ export default function AddExpenseModal() {
                 <Plus className="h-4 w-4" /> Add Expense
             </button>
 
-            {/* Modal */}
             {isOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs px-4">
                     <div className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white p-6 shadow-xl border border-slate-100">
-                        {/* Header */}
                         <div className="mb-6 flex items-center justify-between">
                             <div>
                                 <h2 className="text-lg font-bold text-slate-900">
@@ -42,7 +39,6 @@ export default function AddExpenseModal() {
                             </button>
                         </div>
 
-                        {/* Form */}
                         <form action={createExpense} className="space-y-4">
                             {/* Title */}
                             <div>
@@ -58,7 +54,6 @@ export default function AddExpenseModal() {
                                 />
                             </div>
 
-                            {/* Amount */}
                             <div>
                                 <label className="mb-1 block text-xs font-bold text-slate-700">
                                     Amount (Rs.)
@@ -73,7 +68,6 @@ export default function AddExpenseModal() {
                                 />
                             </div>
 
-                            {/* Category */}
                             <div>
                                 <label className="mb-1 block text-xs font-bold text-slate-700">
                                     Category
@@ -93,7 +87,6 @@ export default function AddExpenseModal() {
                                 </select>
                             </div>
 
-                            {/* Description */}
                             <div>
                                 <label className="mb-1 block text-xs font-bold text-slate-700">
                                     Description
@@ -106,7 +99,6 @@ export default function AddExpenseModal() {
                                 />
                             </div>
 
-                            {/* Date */}
                             <div>
                                 <label className="mb-1 block text-xs font-bold text-slate-700">
                                     Date
@@ -120,7 +112,6 @@ export default function AddExpenseModal() {
                                 />
                             </div>
 
-                            {/* Buttons */}
                             <div className="flex justify-end gap-2.5 pt-4">
                                 <button
                                     type="button"

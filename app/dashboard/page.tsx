@@ -109,10 +109,9 @@ export default async function DashboardPage() {
       <div className="flex min-h-screen">
         {/* Sidebar */}
         <Sidebar activePage="dashboard" />
-
-        {/* Main Content */}
+       
         <main className="flex-1 px-4 py-6 sm:px-6 md:px-8 lg:px-10 max-w-7xl mx-auto">
-          {/* Header */}
+         
           <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-indigo-600">
@@ -199,7 +198,7 @@ export default async function DashboardPage() {
                 {expenses.length}
               </p>
               <p className="mt-1 text-[11px] font-medium text-slate-400">
-                Recorded entries
+                all transactions
               </p>
             </div>
           </div>
@@ -245,7 +244,7 @@ export default async function DashboardPage() {
                     <div className="flex items-center gap-3">
                       <div>
                         <div className="flex items-center gap-2">
-                          <p className="text-sm font-semibold text-slate-900">
+                          <p className="text-sm  text-slate-900">
                             {expense.title}
                           </p>
                           <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-600">
@@ -262,7 +261,7 @@ export default async function DashboardPage() {
                       </div>
                     </div>
 
-                    <p className="text-sm font-bold text-slate-900">
+                    <p className="text-sm text-slate-900">
                       Rs. {expense.amount.toFixed(2)}
                     </p>
                   </div>
@@ -274,4 +273,4 @@ export default async function DashboardPage() {
       </div>
     </div>
   );
-}
+}

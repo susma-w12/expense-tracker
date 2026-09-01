@@ -15,7 +15,7 @@ export default async function Sidebar({ activePage }: SidebarProps) {
       <div>
         {/* Brand Logo */}
         <div className="mb-8 px-3">
-          <Link href="/" className="flex items-center gap-2.5">
+          <Link href="/dashboard" className="flex items-center gap-2.5">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600 font-black text-white shadow-md shadow-indigo-200">
               <Wallet className="h-5 w-5" />
             </div>

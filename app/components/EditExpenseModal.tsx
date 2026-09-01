@@ -35,7 +35,6 @@ export default function EditExpenseModal({
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs px-4 text-left">
                     <div className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white p-6 shadow-xl border border-slate-100">
 
-                        {/* Header */}
                         <div className="mb-6 flex items-center justify-between">
                             <div>
                                 <h2 className="text-lg font-bold text-slate-900">
@@ -55,7 +54,6 @@ export default function EditExpenseModal({
                             </button>
                         </div>
 
-                        {/* Form */}
                         <form action={updateExpense} className="space-y-4">
 
                             <input
@@ -64,7 +62,6 @@ export default function EditExpenseModal({
                                 value={expense.id}
                             />
 
-                            {/* Title */}
                             <div>
                                 <label className="mb-1 block text-xs font-bold text-slate-700">
                                     Title
@@ -78,7 +75,6 @@ export default function EditExpenseModal({
                                 />
                             </div>
 
-                            {/* Amount */}
                             <div>
                                 <label className="mb-1 block text-xs font-bold text-slate-700">
                                     Amount (Rs.)
@@ -93,7 +89,6 @@ export default function EditExpenseModal({
                                 />
                             </div>
 
-                            {/* Category */}
                             <div>
                                 <label className="mb-1 block text-xs font-bold text-slate-700">
                                     Category
@@ -114,7 +109,6 @@ export default function EditExpenseModal({
                                 </select>
                             </div>
 
-                            {/* Description */}
                             <div>
                                 <label className="mb-1 block text-xs font-bold text-slate-700">
                                     Description
@@ -127,7 +121,7 @@ export default function EditExpenseModal({
                                 />
                             </div>
 
-                            {/* Date */}
+
                             <div>
                                 <label className="mb-1 block text-xs font-bold text-slate-700">
                                     Date
@@ -143,7 +137,6 @@ export default function EditExpenseModal({
                                 />
                             </div>
 
-                            {/* Buttons */}
                             <div className="flex justify-end gap-2.5 pt-4">
                                 <button
                                     type="button"
@@ -166,4 +159,4 @@ export default function EditExpenseModal({
             )}
         </>
     );
-}
+}

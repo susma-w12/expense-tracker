@@ -18,7 +18,7 @@ import {
 } from "recharts";
 import { TrendingUp, PieChart as PieIcon } from "lucide-react";
 
-type ChartItem = {
+type ChartItem = {  
   label: string;
   amount: number;
 };
@@ -208,4 +208,4 @@ export default function DashboardCharts({
       </div>
     </div>
   );
-}
+}
