@@ -36,7 +36,7 @@ export default function ExpenseList({ initialExpenses }: Props) {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  // Extract all unique categories present in the user's data + standard categories
+  // Extract all unique categories 
   const categories = useMemo(() => {
     const defaultList = ["All", "Food", "Transport", "Bills", "Shopping", "Entertainment", "Other"];
     const customList = Array.from(new Set(initialExpenses.map((e) => e.category)));
@@ -66,9 +66,8 @@ export default function ExpenseList({ initialExpenses }: Props) {
 
   return (
     <div className="space-y-6">
-      {/* Controls & Filter Bar */}
       <div className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm space-y-4">
-        {/* Top bar: Search input & total badge */}
+
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
           <div className="relative flex-1">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
@@ -100,7 +99,6 @@ export default function ExpenseList({ initialExpenses }: Props) {
           </div>
         </div>
 
-        {/* Category Filter Pills */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 pt-1 no-scrollbar text-xs">
           <span className="flex items-center gap-1 font-semibold text-slate-400 mr-1.5 shrink-0">
             <Filter className="h-3.5 w-3.5" /> Category:
@@ -154,7 +152,6 @@ export default function ExpenseList({ initialExpenses }: Props) {
         </div>
       ) : (
         <div className="rounded-2xl border border-slate-200/80 bg-white shadow-sm overflow-hidden divide-y divide-slate-100">
-          {/* List Header */}
           <div className="hidden md:grid grid-cols-12 gap-4 bg-slate-50/80 px-6 py-3 text-xs font-bold uppercase tracking-wider text-slate-400">
             <span className="col-span-4">Expense Details</span>
             <span className="col-span-3">Category</span>
@@ -163,7 +160,7 @@ export default function ExpenseList({ initialExpenses }: Props) {
             <span className="col-span-1 text-right">Actions</span>
           </div>
 
-          {/* List Content Rows */}
+
           {filteredExpenses.map((expense) => {
             const categoryStyle =
               CATEGORY_COLORS[expense.category] || CATEGORY_COLORS["Other"];
@@ -173,7 +170,6 @@ export default function ExpenseList({ initialExpenses }: Props) {
                 key={expense.id}
                 className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 px-6 py-4 items-center hover:bg-slate-50/70 transition-colors"
               >
-                {/* Title & Description */}
                 <div className="md:col-span-4 flex items-center gap-3">
                   <div className="min-w-0">
                     <h3 className="text-sm font-bold text-slate-900 truncate">
@@ -191,7 +187,6 @@ export default function ExpenseList({ initialExpenses }: Props) {
                   </div>
                 </div>
 
-                {/* Category Badge */}
                 <div className="md:col-span-3 flex items-center">
                   <span
                     className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold border ${categoryStyle.bg} ${categoryStyle.text} ${categoryStyle.border}`}
@@ -202,7 +197,6 @@ export default function ExpenseList({ initialExpenses }: Props) {
                 </div>
 
 
-                {/* Date */}
                 <div className="md:col-span-2 flex items-center text-xs font-medium text-slate-500 gap-1.5">
                   <Calendar className="h-3.5 w-3.5 text-slate-400 md:hidden" />
                   {new Date(expense.date).toLocaleDateString("en-US", {
@@ -212,14 +206,12 @@ export default function ExpenseList({ initialExpenses }: Props) {
                   })}
                 </div>
 
-                {/* Amount */}
                 <div className="md:col-span-2 text-left md:text-right">
                   <span className="text-sm font-extrabold text-slate-900">
                     Rs. {expense.amount.toFixed(2)}
                   </span>
                 </div>
 
-                {/* Actions */}
                 <div className="md:col-span-1 flex items-center justify-end gap-3 pt-2 md:pt-0 border-t border-slate-100 md:border-t-0">
                   <EditExpenseModal expense={expense} />
                   <DeleteButton id={expense.id} />

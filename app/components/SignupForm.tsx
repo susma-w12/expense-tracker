@@ -26,7 +26,6 @@ export default function SignupForm() {
     return (
         <form action={handleSubmit} className="mt-6 space-y-4">
 
-            {/* Name */}
             <div>
                 <label className="mb-1 block text-xs font-bold text-slate-700">
                     Name
@@ -40,7 +39,6 @@ export default function SignupForm() {
                 />
             </div>
 
-            {/* Email */}
             <div>
                 <label className="mb-1 block text-xs font-bold text-slate-700">
                     Email
@@ -54,7 +52,7 @@ export default function SignupForm() {
                 />
             </div>
 
-            {/* Password */}
+
             <div>
                 <label className="mb-1 block text-xs font-bold text-slate-700">
                     Password
@@ -88,7 +86,6 @@ export default function SignupForm() {
                 </div>
             </div>
 
-            {/* Confirm Password */}
             <div>
                 <label className="mb-1 block text-xs font-bold text-slate-700">
                     Confirm Password
@@ -144,4 +141,4 @@ export default function SignupForm() {
             </button>
         </form>
     );
-}
+}

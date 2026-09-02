@@ -33,7 +33,6 @@ export default function LoginForm() {
     return (
         <form action={handleSubmit} className="mt-6 space-y-4">
 
-            {/* Email */}
             <div>
                 <label className="mb-1 block text-xs font-bold text-slate-700">
                     Email
@@ -47,7 +46,6 @@ export default function LoginForm() {
                 />
             </div>
 
-            {/* Password */}
             <div>
                 <label className="mb-1 block text-xs font-bold text-slate-700">
                     Password
@@ -94,4 +92,4 @@ export default function LoginForm() {
             </button>
         </form>
     );
-}
+}

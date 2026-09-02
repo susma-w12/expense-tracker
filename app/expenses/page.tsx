@@ -27,12 +27,10 @@ export default async function ExpensePage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <div className="flex min-h-screen">
-        {/* Sidebar */}
+
         <Sidebar activePage="expenses" />
 
-        {/* Main Content */}
         <main className="flex-1 px-4 py-6 sm:px-6 md:px-8 lg:px-10 max-w-7xl mx-auto">
-          {/* Header */}
           <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               
@@ -47,7 +45,6 @@ export default async function ExpensePage() {
             <AddExpenseModal />
           </div>
 
-          {/* Interactive Expense List with Filters */}
           <ExpenseList initialExpenses={expenses} />
         </main>
       </div>

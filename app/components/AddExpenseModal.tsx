@@ -40,7 +40,6 @@ export default function AddExpenseModal() {
                         </div>
 
                         <form action={createExpense} className="space-y-4">
-                            {/* Title */}
                             <div>
                                 <label className="mb-1 block text-xs font-bold text-slate-700">
                                     Title

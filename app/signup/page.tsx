@@ -6,18 +6,12 @@ import SignupForm from "@/app/components/SignupForm";
 export default function SignupPage() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900 flex flex-col justify-between">
-      {/* Top Navbar */}
       <Navbar activePage="signup" />
 
-      {/* Main Split Section */}
       <div className="mx-auto my-auto w-full max-w-6xl px-6 py-12 flex-1 flex items-center">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center w-full">
-          {/* Left Column: Landing Page Hero */}
           <div className="lg:col-span-7 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-600 mb-4">
-              <span className="flex h-2 w-2 rounded-full bg-indigo-600"></span>
-              Expense Tracker
-            </div>
+            
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-800 leading-tight">
               Track your spending. Stay in control.
             </h1>
@@ -54,7 +48,6 @@ export default function SignupPage() {
         </div>
       </div>
 
-      {/* Footer */}
       <Footer />
     </main>
   );
