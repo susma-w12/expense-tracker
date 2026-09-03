@@ -9,7 +9,7 @@ export async function registerUser(formData: FormData) {
     const password = formData.get("password") as string;
 
     if (!name || !email || !password) {
-        throw new Error("All fields are required");
+        return { error: "All fields are required" };
     }
 
     const existingUser = await prisma.user.findUnique({
@@ -19,7 +19,7 @@ export async function registerUser(formData: FormData) {
     });
 
     if (existingUser) {
-        throw new Error("User already exists");
+        return { error: "An account with this email already exists." };
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -31,9 +31,11 @@ export async function registerUser(formData: FormData) {
             password: hashedPassword,
         },
     });
+
+    return { success: true };
 }
 
 export async function logoutUser() {
     const { signOut } = await import("@/auth");
-    await signOut({ redirectTo: "/login" });
-}
+    await signOut({ redirectTo: "/" });
+}

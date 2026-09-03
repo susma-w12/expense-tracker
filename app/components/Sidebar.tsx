@@ -88,4 +88,4 @@ export default async function Sidebar({ activePage }: SidebarProps) {
       </div>
     </aside>
   );
-}
+}

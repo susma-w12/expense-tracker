@@ -112,7 +112,7 @@ export default function ExpenseList({ initialExpenses }: Props) {
                 onClick={() => setSelectedCategory(cat)}
                 className={`shrink-0 rounded-xl px-3.5 py-1.5 font-semibold transition-all duration-150 ${
                   isSelected
-                    ? "bg-slate-900 text-white shadow-sm"
+                    ? "bg-slate-500 text-white shadow-sm"
                     : "bg-slate-100 text-slate-600 hover:bg-slate-200/70"
                 }`}
               >
@@ -156,7 +156,7 @@ export default function ExpenseList({ initialExpenses }: Props) {
             <span className="col-span-4">Expense Details</span>
             <span className="col-span-3">Category</span>
             <span className="col-span-2">Date</span>
-            <span className="col-span-2 text-right">Amount</span>
+            <span className="col-span-2">Amount</span>
             <span className="col-span-1 text-right">Actions</span>
           </div>
 
@@ -181,7 +181,7 @@ export default function ExpenseList({ initialExpenses }: Props) {
                       </p>
                     ) : (
                       <p className="mt-0.5 text-[11px] text-slate-400 italic">
-                        No description
+
                       </p>
                     )}
                   </div>
@@ -206,8 +206,8 @@ export default function ExpenseList({ initialExpenses }: Props) {
                   })}
                 </div>
 
-                <div className="md:col-span-2 text-left md:text-right">
-                  <span className="text-sm font-extrabold text-slate-900">
+                <div className="md:col-span-2 items-center text-xs gap-1.5">
+                  <span className="text-sm text-slate-500">
                     Rs. {expense.amount.toFixed(2)}
                   </span>
                 </div>

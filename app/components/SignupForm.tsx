@@ -8,19 +8,27 @@ export default function SignupForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [passwordError, setPasswordError] = useState("");
+    const [signupError, setSignupError] = useState("");
 
     async function handleSubmit(formData: FormData) {
         const password = formData.get("password") as string;
         const confirmPassword = formData.get("confirmPassword") as string;
+        
+        setSignupError("");
 
         if (password !== confirmPassword) {
-            setPasswordError("Passwords do not match");
+            setPasswordError("Passwords do not match.");
             return;
         }
 
         setPasswordError("");
+        
+        const result = await registerUser(formData);
 
-        await registerUser(formData);
+        if(result?.error){
+            setSignupError(result.error);
+            return;
+        }
     }
 
     return (
@@ -132,6 +140,12 @@ export default function SignupForm() {
                     </p>
                 )}
             </div>
+
+            {signupError && (
+                <p className="mt-1 text-xs text-red-500 font-medium">
+                    {signupError}
+                </p>
+            )}
 
             <button
                 type="submit"
