@@ -11,9 +11,8 @@ export default async function Sidebar({ activePage }: SidebarProps) {
   const session = await auth();
 
   return (
-    <aside className="hidden w-64 shrink-0 border-r border-slate-200 bg-white px-5 py-6 md:flex md:flex-col justify-between shadow-sm">
+    <aside className="fixed left-0 top-0 hidden h-screen w-64 shrink-0 border-r border-slate-200 bg-white px-5 py-6 shadow-sm md:flex md:flex-col justify-between">
       <div>
-        {/* Brand Logo */}
         <div className="mb-8 px-3">
           <Link href="/dashboard" className="flex items-center gap-2.5">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600 font-black text-white shadow-md shadow-indigo-200">

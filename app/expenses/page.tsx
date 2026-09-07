@@ -30,7 +30,7 @@ export default async function ExpensePage() {
 
         <Sidebar activePage="expenses" />
 
-        <main className="flex-1 px-4 py-6 sm:px-6 md:px-8 lg:px-10 max-w-7xl mx-auto">
+        <main className="flex-1 px-4 py-6 sm:px-6 md:px-8 lg:px-10 md:ml-64 max-w-7xl mx-auto">
           <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               

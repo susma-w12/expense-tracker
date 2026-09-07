@@ -107,10 +107,10 @@ export default async function DashboardPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <div className="flex min-h-screen">
-        {/* Sidebar */}
+
         <Sidebar activePage="dashboard" />
        
-        <main className="flex-1 px-4 py-6 sm:px-6 md:px-8 lg:px-10 max-w-7xl mx-auto">
+        <main className="flex-1 px-4 py-6 sm:px-6 md:px-8 lg:px-10 md:ml-64 max-w-7xl mx-auto">
          
           <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -148,7 +148,6 @@ export default async function DashboardPage() {
               </p>
             </div>
 
-            {/* This Month */}
             <div className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center justify-between">
                 <p className="text-xs font-semibold text-slate-500">
@@ -166,7 +165,6 @@ export default async function DashboardPage() {
               </p>
             </div>
 
-            {/* Today */}
             <div className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center justify-between">
                 <p className="text-xs font-semibold text-slate-500">
