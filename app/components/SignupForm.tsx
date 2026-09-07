@@ -3,12 +3,15 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { registerUser } from "@/app/actions/auth";
+import { useRouter } from "next/navigation";
 
 export default function SignupForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [passwordError, setPasswordError] = useState("");
     const [signupError, setSignupError] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
+    const router = useRouter();
 
     async function handleSubmit(formData: FormData) {
         const password = formData.get("password") as string;
@@ -29,6 +32,12 @@ export default function SignupForm() {
             setSignupError(result.error);
             return;
         }
+
+        setSuccessMessage("Account created successfully! Redirecting to login...");
+
+        setTimeout(() => {
+            router.push("/login");
+        }, 2000);
     }
 
     return (
@@ -145,6 +154,10 @@ export default function SignupForm() {
                 <p className="mt-1 text-xs text-red-500 font-medium">
                     {signupError}
                 </p>
+            )}
+
+            {successMessage && (
+                <p className="text-xs font-medium text-indigo-600">{successMessage}</p>
             )}
 
             <button
